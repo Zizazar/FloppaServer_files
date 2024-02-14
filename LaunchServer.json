@@ -1,0 +1,145 @@
+{
+  "projectName": "floppaland",
+  "mirrors": [
+    "https://mirror.gravitlauncher.com/5.5.x/",
+    "https://gravit-launcher-mirror.storage.googleapis.com/"
+  ],
+  "binaryName": "Launcher",
+  "copyBinaries": true,
+  "cacheUpdates": true,
+  "env": "STD",
+  "auth": {
+    "std": {
+      "core": {
+        "type": "mysql",
+        "mySQLHolder": {
+          "address": "db",
+          "port": 3306,
+          "username": "root",
+          "password": "example",
+          "database": "db",
+          "timezone": "UTC",
+          "useHikari": false
+        },
+        "passwordVerifier": {
+          "algo": "MD5",
+          "type": "digest"
+        },
+        "expireSeconds": 3600,
+        "table": "users",
+        "tableHwid": "hwids",
+        "uuidColumn": "uuid",
+        "usernameColumn": "username",
+        "passwordColumn": "password",
+        "accessTokenColumn": "accessToken",
+        "hardwareIdColumn": "hwidId",
+        "serverIDColumn": "serverID"
+      },
+      "textureProvider": {
+        "skinURL": "http://example.com/skins/%username%.png",
+        "cloakURL": "http://example.com/cloaks/%username%.png",
+        "type": "request"
+      },
+      "isDefault": true,
+      "displayName": "Default"
+    }
+  },
+  "protectHandler": {
+    "profileWhitelist": {},
+    "allowUpdates": [],
+    "type": "std"
+  },
+  "components": {
+    "regLimiter": {
+      "message": "Превышен лимит регистраций",
+      "excludeIps": [],
+      "exclude": [],
+      "rateLimit": 3,
+      "rateLimitMillis": 36000000,
+      "type": "regLimiter"
+    },
+    "authLimiter": {
+      "message": "Превышен лимит авторизаций",
+      "exclude": [],
+      "rateLimit": 3,
+      "rateLimitMillis": 8000,
+      "type": "authLimiter"
+    },
+    "proguard": {
+      "modeAfter": "MainBuild",
+      "dir": "proguard",
+      "enabled": false,
+      "mappings": true,
+      "type": "proguard"
+    }
+  },
+  "launch4j": {
+    "enabled": true,
+    "setMaxVersion": false,
+    "maxVersion": "99.0.0",
+    "minVersion": "17.0.0",
+    "downloadUrl": "https://bell-sw.com/pages/downloads/?version=java-8-lts&os=Windows&package=jre-full",
+    "productName": "GravitLauncher",
+    "productVer": "5.5.3.3",
+    "fileDesc": "GravitLauncher 5.5.3",
+    "fileVer": "5.5.3.3",
+    "internalName": "Launcher",
+    "copyright": "© GravitLauncher Team",
+    "trademarks": "This product is licensed under GPLv3",
+    "txtFileVersion": "%s, build %d",
+    "txtProductVersion": "%s, build %d"
+  },
+  "netty": {
+    "fileServerEnabled": true,
+    "ipForwarding": false,
+    "disableWebApiInterface": false,
+    "showHiddenFiles": false,
+    "sendProfileUpdatesEvent": true,
+    "launcherURL": "http://localhost:9274/Launcher.jar",
+    "downloadURL": "http://localhost:9274/%dirname%/",
+    "launcherEXEURL": "http://localhost:9274/Launcher.exe",
+    "address": "ws://localhost:9274/api",
+    "bindings": {},
+    "performance": {
+      "usingEpoll": true,
+      "bossThread": 2,
+      "workerThread": 8,
+      "schedulerThread":2,
+      "maxWebSocketRequestBytes": 1048576
+    },
+    "security": {
+      "hardwareTokenExpire": 28800,
+      "publicKeyTokenExpire": 28800,
+      "launcherTokenExpire": 28800
+    },
+    "binds": [
+      {
+        "address": "0.0.0.0",
+        "port": 9274
+      }
+    ],
+    "logLevel": "DEBUG"
+  },
+  "launcher": {
+    "compress": true,
+    "stripLineNumbers": true,
+    "deleteTempFiles": true,
+    "certificatePinning": false,
+    "encryptRuntime": false,
+    "customJvmOptions": [],
+    "memoryLimit": 256
+  },
+  "sign": {
+    "enabled": false,
+    "keyStore": "pathToKey",
+    "keyStoreType": "JKS",
+    "keyStorePass": "mypass",
+    "keyAlias": "myname",
+    "keyPass": "mypass",
+    "metaInfKeyName": "SIGNUMO.RSA",
+    "metaInfSfName": "SIGNUMO.SF",
+    "signAlgo": "SHA256WITHRSA",
+    "checkCertificateExpired": true
+  },
+  "startScript": "./start.sh"
+}

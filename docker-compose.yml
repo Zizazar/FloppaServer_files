@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  launchserver:
+    image: ijo42/glauncher:latest
+    container_name: launchserver
+        
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - 9274:9274
+    volumes:
+      - "C:/Users/Zizazr/Desktop/floppaland/launchserver:/app/launchserver"
+    environment:
+      - TZ=Europe/Moscow # Timezone
+      - PUID=1000  # User  ID `id $(whoami) -u`
+      - PGID=1000  # Group ID `id $(whoami) -g`
+      
+  db:
+    image: mysql
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      VERSION: 1.7.10
+    volumes:
+      # attach the relative directory 'data' to the container's /data path
+      - C:\Users\Zizazr\Desktop\floppaland\server:/data

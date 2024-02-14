@@ -1,0 +1,12 @@
+{
+  "token": "OTYwMjY1OTQwNTU2MTg1NjYw.GW6LMc.ghZNb2LSkfpP3qvWjoCOyk_voKwTsiS0AFVbWQ",
+  "prefix": "!",
+  "eventGuildId": 959163119517716511,
+  "eventChannelId": 960593520635306004,
+  "allowUsers": [669963214544437278],
+  "allowRoles": [1112612026943033374],
+  "events": {
+    "login": true,
+    "checkServer": false
+  }
+}
